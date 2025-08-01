@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
 
 interface OnboardingSlide {
   id: number
@@ -10,6 +11,7 @@ interface OnboardingSlide {
   subtitle: string
   description: string
   bgColor: string
+  image: string
 }
 
 interface OnboardingV2Props {
@@ -24,6 +26,7 @@ export default function OnboardingV2({ onComplete }: OnboardingV2Props) {
       subtitle: "Los programas más importantes, trends y podcast",
       description: "Explora una amplia variedad de contenido de audio personalizado para ti",
       bgColor: "bg-red-600", // Rojo consistente
+      image: "/images/onboarding/slide-1.png"
     },
     {
       id: 2,
@@ -31,6 +34,7 @@ export default function OnboardingV2({ onComplete }: OnboardingV2Props) {
       subtitle: "Las mejores emisoras y artistas",
       description: "Disfruta de música en vivo, conciertos exclusivos y los hits del momento",
       bgColor: "bg-red-600", // Mismo rojo
+      image: "/images/onboarding/slide-2.png"
     },
     {
       id: 3,
@@ -38,6 +42,7 @@ export default function OnboardingV2({ onComplete }: OnboardingV2Props) {
       subtitle: "Mantente informado siempre",
       description: "Accede a las últimas noticias, resultados deportivos y análisis en tiempo real",
       bgColor: "bg-red-600", // Mismo rojo
+      image: "/images/onboarding/slide-3.png"
     },
     {
       id: 4,
@@ -45,6 +50,7 @@ export default function OnboardingV2({ onComplete }: OnboardingV2Props) {
       subtitle: "Contenido original y único",
       description: "Escucha podcasts exclusivos de tus creadores favoritos y descubre nuevos talentos",
       bgColor: "bg-red-600", // Mismo rojo
+      image: "/images/onboarding/slide-4.png"
     },
   ]
 
@@ -93,9 +99,16 @@ export default function OnboardingV2({ onComplete }: OnboardingV2Props) {
         <div className="w-full max-w-sm mb-8">
           <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-white border-opacity-20">
             {/* Imagen placeholder */}
-            <div className="w-full h-48 bg-white bg-opacity-20 rounded-xl mb-6 flex items-center justify-center">
-              <div className="text-white text-6xl font-bold opacity-50">{currentSlide + 1}</div>
-            </div>
+            <div className="w-full h-48 bg-white bg-opacity-20 rounded-xl mb-6 overflow-hidden relative">
+              <Image
+                src={currentSlideData.image || "/placeholder.svg"}
+                alt={`Slide ${currentSlide + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={currentSlide === 0}
+              />
+          </div>
 
             {/* Texto principal */}
             <div className="text-center text-white">
@@ -156,13 +169,14 @@ export default function OnboardingV2({ onComplete }: OnboardingV2Props) {
           {/* Dots indicator - clickeable */}
           <div className="flex gap-2">
             {slides.map((_, index) => (
-              <button
+              <Button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all ${
                   index === currentSlide ? "bg-white scale-110" : "bg-white bg-opacity-40 hover:bg-opacity-60"
                 }`}
-              />
+              >
+              </Button>
             ))}
           </div>
 
