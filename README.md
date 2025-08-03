@@ -1,8 +1,7 @@
 # 🎧 Mi Emisoras – Landing Page
 
-Este proyecto es una colaboración con una startup para construir la **landing page oficial** de su aplicativo web: **Mi Emisoras**.  
-Se desarrollaron **tres vistas principales** completamente responsivas y dinámicas utilizando tecnologías modernas del ecosistema React.
-
+Este proyecto fue desarrollado en colaboración con una startup y con el **apoyo de la IA V0**, utilizada para acelerar el diseño de interfaces y mejorar la estructura del código.
+Se trata de la **landing page oficial** del aplicativo **Mi Emisoras**, compuesta por tres vistas principales totalmente responsivas e interactivas.
 ---
 
 ## 🚀 Tecnologías utilizadas
